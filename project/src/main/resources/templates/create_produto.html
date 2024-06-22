@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de estoque da pizzaria</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<style>
+    body {
+        background-color: black;
+	--units: 1.5vmax;
+	--brick1: #CC0000;
+	--brick2: #DD0000;
+	--lines: #565656;
+	--gp-ln: 50%/calc(var(--units) * 10) calc(var(--units) * 5);
+	--gp-cn: 50%/calc(var(--units) * 5) calc(var(--units) * 5);
+	height: 100vh;
+	background:
+		repeating-conic-gradient(from 90deg at 95% 55%, var(--lines) 0% 25%, #fff0 0% 100%) var(--gp-cn),
+		repeating-linear-gradient(180deg, var(--lines) 0 5%, #fff0 0 50%, var(--lines) 0 55%, var(--brick2) 0 100% ) var(--gp-ln),
+		repeating-linear-gradient(90deg, var(--brick1) 0 47.5%, var(--lines) 0 50%, var(--brick1) 0 97.5%, var(--lines) 0 100% ) var(--gp-ln);
+}
+       .corpo{
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        color: white;
+    }
+    .container{
+        background-color: black;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter:blur(8px);
+        -moz-backdrop-filter:blur(8px);
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.548) 0px 54px 55px, rgba(0, 0, 0, 0.651) 0px -12px 30px, rgba(0, 0, 0, 0.671) 0px 4px 6px, rgba(0, 0, 0, 0.671) 0px 12px 13px, rgba(0, 0, 0, 0.603) 0px -3px 5px;
+}
+</style>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Pizzaria System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/estoque}">Gerenciador de estoque da pizzaria</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<div class="corpo">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class="text-center"> Adicionar um novo produto </h1>
+                <div class="card-body">
+                    <form th:action="@{/estoque}" th:object="${estoque}" method="POST">
+                        <div class="form-group">
+                            <label> Nome do produto: </label>
+                            <input
+                                    type="text"
+                                    name="nome"
+                                    th:field="*{nome}"
+                                    class="form-control"
+                                    placeholder="Adicione o nome do produto"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label> Quantidade do produto: </label>
+                            <input
+                                    type="number"
+                                    name="quantidade"
+                                    th:field="*{quantidade}"
+                                    class="form-control"
+                                    placeholder="Adicione a quantidade do produto"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label> Preço do produto: </label>
+                            <input
+                                    type="number"
+                                    name="preco"
+                                    th:field="*{preco}"
+                                    class="form-control"
+                                    placeholder="Adicione o preço do produto"
+                            />
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">
+                                Salvar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
