@@ -20,16 +20,11 @@ public class Estoque {
     @Column(name="nome",nullable = false)
     private String nome;
 
-
+    @Setter
     @Column(name="quantidade",nullable = false)
     private int quantidade;
 
-    public void setQuantidade(int quantidade) {
-        if (quantidade<0){
-            throw new IllegalArgumentException("A quantidade deve ser maior que 0");
-        }
-        this.quantidade = quantidade;
-    }
+
 
     @Setter
     @Column(name="preco",nullable = false)

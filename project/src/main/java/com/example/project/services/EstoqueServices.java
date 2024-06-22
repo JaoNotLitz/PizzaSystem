@@ -18,4 +18,24 @@ public class EstoqueServices {
     public List<Estoque> findAll(){
         return repository.findAll();
     }
+
+    public Estoque saveProduto(Estoque estoque) {
+
+        if (estoque.getQuantidade() < 0) {
+            estoque.setQuantidade(0);
+        }
+
+        return repository.save(estoque);
+    }
+
+    public Estoque getById(Long id){
+        return repository.findById(id).get();
+    }
+    public Estoque updateEstoque (Estoque estoque){
+        return repository.save(estoque);
+    }
+
+    public void deleteById(Long id){
+        repository.deleteById(id);
+    }
 }

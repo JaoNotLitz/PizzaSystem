@@ -8,6 +8,12 @@
 </head>
 <body>
 <style>
+    .adDiff{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 7vh;
+    }
     body {
         background-color: black;
 	--units: 1.5vmax;
@@ -41,7 +47,10 @@
 <div class="corpo">
     <div class="container">
         <div class="row">
-            <h1 style="color: white;">Lista do Estoque</h1>
+            <div style="display:flex;justify-content: space-around;margin-bottom: 3vh;margin-top: 3vh">
+            <h1 style="color: white;width: fit-content;">Lista do Estoque</h1>
+                <a style="display: flex;align-items: center;" th:href="@{/estoque/new}" class="btn btn-success">Adicionar Produto</a>
+            </div>
         </div>
 
         <table class="table table-striped table-borded">
@@ -50,13 +59,31 @@
                 <th> Nome do Produto</th>
                 <th> Quantidade do Produto</th>
                 <th> Preço</th>
+                <th> Editar</th>
+                <th> Adicionar/Remover</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="produto : ${estoque}">
-                <th th:text="${produto.nome}"></th>
-                <th th:text="${produto.quantidade}"></th>
-                <th th:text="${produto.preco}"></th>
+                <td th:text="${produto.nome}"></td>
+                <td th:text="${produto.quantidade}"></td>
+                <td th:text="${produto.preco}"></td>
+                <td>
+                    <a th:href="@{/estoque/edit/{id}(id=${produto.id})}"
+                    class="btn btn-primary">Editar</a>
+                    <a th:href="@{/estoque/{id}(id=${produto.id})}"
+                       class="btn btn-danger">DELETAR PRODUTO</a>
+                </td>
+                <td class="adDiff">
+                    <form th:action="@{/estoque/adicionar/{id}(id=${produto.id})}" method="post">
+                        <input type="hidden" name="id" th:value="${produto.id}" />
+                        <button type="submit" class="btn btn-secondary">+</button>
+                    </form>
+                    <form th:action="@{/estoque/remove/{id}(id=${produto.id})}" method="post">
+                        <input type="hidden" name="id" th:value="${produto.id}" />
+                        <button type="submit" class="btn btn-secondary">-</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
