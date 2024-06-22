@@ -8,24 +8,26 @@ import lombok.Setter;
 
 
 @Getter
-@Setter
 @Entity
-@Table(name = "estoque")
+@Table(name="estoque")
 public class Estoque {
-
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nome", nullable = false)
+    @Setter
+    @Column(name="nome",nullable = false)
     private String nome;
 
-
-    @Column(name = "quantidade", nullable = false)
+    @Setter
+    @Column(name="quantidade",nullable = false)
     private int quantidade;
 
 
-    @Column(name = "preco", nullable = false)
+
+    @Setter
+    @Column(name="preco",nullable = false)
     private double preco;
 
     public Estoque() {
@@ -36,6 +38,7 @@ public class Estoque {
         this.quantidade = quantidade;
         this.preco = preco;
     }
+
 
 
 }
